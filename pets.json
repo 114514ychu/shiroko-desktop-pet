@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 2,
+  "repository": "https://gitee.com/chenmaoran/codex-pet",
+  "updatedAt": "2026-10-16",
+  "author": "B站Absdasbdsa",
+  "previewGuide": "docs/PREVIEWS.md",
+  "previewManifest": "docs/preview-manifest.json",
+  "creationGuide": "docs/creation/README.md",
+  "creationAgentInstructions": "AGENTS.md",
+  "pets": [
+    {
+      "id": "sunaookami-shiroko",
+      "name": "砂狼白子",
+      "category": "3D",
+      "installationType": "standalone-electron-desktop",
+      "version": "1.2.0",
+      "platform": "windows-x64",
+      "path": "characters/sunaookami-shiroko",
+      "readme": "characters/sunaookami-shiroko/README.md",
+      "preview": "characters/sunaookami-shiroko/previews/readme-default-idle.gif",
+      "previewAlt": "砂狼白子默认形态 Cafe_Idle 循环动画",
+      "agentInstructions": "characters/sunaookami-shiroko/AGENTS.md",
+      "installDocument": "characters/sunaookami-shiroko/docs/INSTALL.md",
+      "checksums": "characters/sunaookami-shiroko/checksums.json",
+      "verifyCommand": "powershell -NoProfile -ExecutionPolicy Bypass -File characters/sunaookami-shiroko/tools/setup.ps1 -CheckOnly",
+      "installCommand": "powershell -NoProfile -ExecutionPolicy Bypass -File characters/sunaookami-shiroko/tools/setup.ps1",
+      "launch": "characters/sunaookami-shiroko/启动砂狼白子.cmd",
+      "studioLaunch": "characters/sunaookami-shiroko/动作查看器.cmd",
+      "requirements": [
+        "Windows 10/11 x64",
+        "Network access for initial runtime setup"
+      ],
+      "runtime": {
+        "portableNode": "24.21.0",
+        "electron": "44.7.0",
+        "three": "0.186.1"
+      },
+      "defaultVariant": "default",
+      "previewVariant": "default",
+      "sourceVariantsManifest": "characters/sunaookami-shiroko/assets/source-variants.json",
+      "runtimeNormalizationManifest": "characters/sunaookami-shiroko/assets/runtime-normalization.json",
+      "variantCount": 4,
+      "animationCount": 139,
+      "textureCount": 42,
+      "author": "B站Absdasbdsa",
+      "runtimeName": "砂狼白子",
+      "repositoryName": "砂狼白子",
+      "sourceModelSHA256": "3d9e5c74a3e85833631f734100b5773765395902bfea8997de9aa430385f10ad",
+      "variants": [
+        {
+          "id": "default",
+          "name": "默认服装",
+          "animationCount": 44,
+          "textureCount": 12,
+          "sourceModelSHA256": "3d9e5c74a3e85833631f734100b5773765395902bfea8997de9aa430385f10ad"
+        },
+        {
+          "id": "riding",
+          "name": "骑行服装",
+          "animationCount": 38,
+          "textureCount": 9,
+          "sourceModelSHA256": "c717a7f131379199f50430a08512152663205c2b2879e0cec90a4b239a8a6a4e"
+        },
+        {
+          "id": "swimsuit",
+          "name": "泳装",
+          "animationCount": 10,
+          "textureCount": 10,
+          "sourceModelSHA256": "78f722202bdeefd6041f213a58d7bdb4b775a556edd31cd6b341685d1f7418eb"
+        },
+        {
+          "id": "terror",
+          "name": "黑子",
+          "animationCount": 47,
+          "textureCount": 11,
+          "sourceModelSHA256": "caba92ea7c376fced7fa8b1f516122c7b766a97f3a461a8340fa67dbb1544d47"
+        }
+      ]
+    }
+  ],
+  "console": {
+    "id": "codex-pet-console",
+    "version": "2.1.2",
+    "author": "B站Absdasbdsa",
+    "path": "console",
+    "readme": "console/README.md",
+    "agentInstructions": "console/AGENTS.md",
+    "checksums": "console/checksums.json",
+    "launch": "启动桌宠控制台.cmd",
+    "setupCommand": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/setup.ps1"
+  }
+}

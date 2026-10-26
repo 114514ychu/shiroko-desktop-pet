@@ -1,0 +1,12 @@
+const $=id=>document.getElementById(id),api=window.appSettings;
+const text=['endpoint','model','speechEndpoint','gsvDirectory','voiceDirectory','harnessExecutable','harnessHome'],checks=['speechEnabled','followEnabled'];
+function message(value,error=false){$('message').textContent=value||'';$('message').dataset.error=String(error);}
+function render(state){if(state.settings){for(const key of text)$(key).value=state.settings[key]||'';for(const key of checks)$(key).checked=Boolean(state.settings[key]);}if(state.chat)$('chatStatus').textContent=state.chat.configured?'聊天服务已配置。':'尚未配置云端密钥。本机服务可免密钥使用。';if(state.voice)$('voiceStatus').textContent=(state.voice.installed?'组件已安装':'组件未安装')+' · '+(state.voice.running?'进程运行中':'进程未启动')+(state.voice.lastError?' · '+state.voice.lastError:'');if(state.dataDirectory)$('dataDirectory').textContent=state.dataDirectory;}
+async function run(action,value){try{const result=await api.invoke(action,value);if(!result?.ok)throw Error(result?.error||'操作未完成。');render(result);message(result.message);return result;}catch(error){message(error.message,true);return null;}}
+$('save').onclick=async()=>{const value=Object.fromEntries(text.map(k=>[k,$(k).value]));for(const key of checks)value[key]=$(key).checked;value.apiKey=$('apiKey').value;value.clearKey=$('clearKey').checked;const result=await run('save',value);if(result){$('apiKey').value='';$('clearKey').checked=false;}};
+for(const [id,action] of Object.entries({testChat:'test-chat',startVoice:'start',stopVoice:'stop',probeVoice:'probe',voiceLog:'log',openData:'data',importOld:'import'}))$(id).onclick=async()=>{const button=$(id);button.disabled=true;message(action==='start'?'正在启动语音并准备音色，首次加载请稍候…':'正在处理…');try{await run(action);}finally{button.disabled=false;}};
+$('installVoice').onclick=async()=>{$('installVoice').disabled=true;message('选择组件包后将校验并安装，请等待完成。');try{await run('voice-file');}finally{$('installVoice').disabled=false;}};
+for(const [id,action,target] of [['pickGsv','pick-gsv','gsvDirectory'],['pickVoice','pick-voice','voiceDirectory'],['pickHarness','pick-harness','harnessExecutable'],['pickHome','pick-harness-home','harnessHome']])$(id).onclick=async()=>{const result=await run(action);if(result?.path)$(target).value=result.path;};
+void run('state');
+
+$('deepseekPreset').onclick=()=>{$('endpoint').value='https://api.deepseek.com/chat/completions';$('model').value='deepseek-chat';message('已填入 DeepSeek 配置，请填写自己的 API Key 后保存。');};

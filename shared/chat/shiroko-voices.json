@@ -1,0 +1,18 @@
+{
+  "default": {
+    "gpt_weights": "weights/shiroko68p2-e6.ckpt",
+    "sovits_weights": "weights/shiroko68p2e10_e10_s10.pth",
+    "ref_audio_path": "voice/Cafe_monolog_1.wav",
+    "prompt_text": "今日の平均速度は……うん、ちょっと速くなった感じ……。",
+    "text_lang": "ja",
+    "prompt_lang": "ja"
+  },
+  "terror": {
+    "gpt_weights": "weights/shiroko_terror-e6.ckpt",
+    "sovits_weights": "weights/shiroko_terror_e8_s8.pth",
+    "ref_audio_path": "voice/terror_Gachaget.wav",
+    "prompt_text": "アビドスの砂狼シロコ…。 ん、またよろしくね、先生。",
+    "text_lang": "ja",
+    "prompt_lang": "ja"
+  }
+}

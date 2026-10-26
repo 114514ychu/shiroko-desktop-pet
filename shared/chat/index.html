@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self' data:; media-src 'self' data:">
+<title>头顶聊天</title><link rel="stylesheet" href="style.css"></head>
+<body><main id="shell">
+  <section id="conversation" hidden>
+    <div id="bubble" role="status" aria-live="polite" tabindex="-1">
+      <header id="panelHead">
+        <span id="who">白子</span>
+        <span id="state" hidden aria-hidden="true"><i></i><i></i><i></i></span>
+        <span id="panelActions" hidden>
+          <button id="panelMenu" type="button" title="聊天选项" aria-label="聊天选项" aria-haspopup="menu">⋯</button>
+          <button id="panelClose" type="button" title="收起聊天" aria-label="收起聊天">×</button>
+        </span>
+      </header>
+      <p id="reply"></p>
+      <p id="translation" hidden></p>
+      <small id="voiceStatus" hidden></small>
+    </div>
+    <form id="composer" hidden><button id="microphone" type="button" title="语音输入（Alt+V），识别后可编辑再发送" aria-label="语音输入" aria-pressed="false">麦</button><input id="message" aria-label="聊天内容" placeholder="和我聊聊…" maxlength="6000" autocomplete="off"><button id="interrupt" type="button" title="停止回复或声音，保留聊天框" aria-label="停止回复和声音" hidden>■</button><button id="send" type="submit" title="发送" aria-label="发送">↑</button></form>
+    <section id="settings" hidden><div class="settings-title">DeepSeek API 设置<button id="back" aria-label="返回聊天" title="返回聊天">×</button></div><p class="hint">聊天内容发送给配置的服务，记录保存在本机，Key 在本机加密保存。</p><input id="apiKey" type="password" aria-label="DeepSeek API Key" placeholder="填写 API Key" autocomplete="off"><button id="saveKey">保存</button><p id="keyStatus" class="hint"></p></section>
+  </section>
+  <nav id="rail"><button id="toggle" title="聊天" aria-label="展开聊天" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-5 4v-4H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z"/></svg></button><button id="menu" title="聊天选项" aria-label="聊天选项" hidden>⋯</button></nav>
+</main><script src="renderer.js"></script></body></html>

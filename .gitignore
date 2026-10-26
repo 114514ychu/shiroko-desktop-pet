@@ -1,0 +1,30 @@
+# User data, credentials, generated files and large dependencies
+Data/
+**/Data/
+node_modules/
+dist/
+release/
+releases/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+deepseek-api-key.bin
+__pycache__/
+*.py[cod]
+.venv/
+GSV-TTS-Lite/
+voice-component/
+*.log
+*.zip
+*.7z
+*.exe
+*.dll
+*.pth
+*.ckpt
+*.pt
+*.onnx
+*.safetensors
+# Local imported game assets: upload only after confirming their distribution rights
+characters/*/assets/

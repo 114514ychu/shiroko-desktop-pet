@@ -1,0 +1,19 @@
+{
+  "name": "deepseek-harness-pet-console",
+  "version": "1.0.0",
+  "author": "B站Absdasbdsa",
+  "copyright": "Copyright (c) 2026 B站Absdasbdsa",
+  "license": "MulanPSL-2.0",
+  "private": true,
+  "description": "只读跟随 DeepSeek Harness 的独立桌宠控制台",
+  "main": "src/main.cjs",
+  "scripts": {
+    "start": "node tools/launch.cjs",
+    "check": "node --check src/main.cjs && node --check src/preload.cjs && node --check src/renderer.js && node --check src/character-identity.mjs && node --check src/preview-fit.mjs && node --check src/studio-view.cjs && node --check src/model.cjs && node --check src/presentation.cjs && node --check src/window-lifecycle.cjs && node --check src/update-check.cjs && node --check src/update-schedule.cjs && node --check src/settings-menu.cjs && node --check src/settings-menu-preload.cjs && node --check src/settings-menu.js && node --check src/repository-update.cjs && node --check src/update-worker.cjs && node --check src/update-dialog.cjs && node --check src/update-preload.cjs && node --check src/update.js && node --check src/about-dialog.cjs && node --check src/about-preload.cjs && node --check src/about.js && node --check tools/follow-fixture.cjs && node --check tools/test_follow.cjs && node --check tools/test_console.cjs && node --check tools/test_cards.cjs && node --check tools/test_card_composition.cjs && node --check tools/test_settings.cjs && node --check tools/test_character.cjs && node --check tools/test_reisa.cjs && node --check tools/test_review.cjs && node --check tools/test_hifumi.cjs && node --check src/thumbnail-requests.cjs && node --check tools/test_dpi_interaction.cjs && node --check tools/test_shiroko.cjs && node --check tools/test_haruka.cjs && node --check tools/test_state_actions.cjs && node --check src/dialogue-coordinator.cjs && node --check src/volume-control.mjs && node --check tools/run_dialogue.cjs && node --check tools/test_dialogue.cjs",
+    "test": "node --test test/*.test.cjs"
+  },
+  "runtime": {
+    "electron": "44.7.0",
+    "sharedRuntime": true
+  }
+}

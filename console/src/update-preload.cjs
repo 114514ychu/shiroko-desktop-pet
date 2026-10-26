@@ -1,0 +1,2 @@
+const {contextBridge,ipcRenderer}=require('electron');
+contextBridge.exposeInMainWorld('petUpdate',{initial:()=>ipcRenderer.invoke('update:initial'),apply:()=>ipcRenderer.invoke('update:apply'),ignoreReminders:value=>ipcRenderer.invoke('update:ignore-reminders',value),repository:()=>ipcRenderer.invoke('update:repository'),close:()=>ipcRenderer.send('update:close'),onState:callback=>ipcRenderer.on('update:state',(_event,value)=>callback(value))});

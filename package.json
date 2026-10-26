@@ -1,0 +1,51 @@
+{
+  "name": "shiroko-desktop-pet",
+  "version": "1.0.0",
+  "private": true,
+  "author": "B站Absdasbdsa",
+  "license": "MulanPSL-2.0",
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "main": "console/src/main.cjs",
+  "description": "白子桌宠：离线陪伴、换装与可选 AI 聊天",
+  "runtime": {
+    "electron": "44.7.0",
+    "three": "0.186.1"
+  },
+  "standalone": true,
+  "scripts": {
+    "start": "electron .",
+    "check": "node tools/check-source.cjs",
+    "build:win": "electron-builder --win dir --publish never",
+    "test:native": "node tools/run-native-test.cjs"
+  },
+  "devDependencies": {
+    "electron": "44.7.0",
+    "electron-builder": "26.0.12"
+  },
+  "build": {
+    "appId": "local.shiroko.pet",
+    "productName": "ShirokoPet",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "package.json",
+      "console/**/*",
+      "characters/**/*",
+      "shared/**/*",
+      "tools/runtime-paths.cjs",
+      "distribution/**/*",
+      "pets.json",
+      "LICENSE",
+      "ATTRIBUTION.md",
+      "ASSET_RIGHTS.md"
+    ],
+    "win": {
+      "target": "dir",
+      "icon": "console/assets/icon.ico"
+    }
+  }
+}

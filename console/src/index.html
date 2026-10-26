@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="author" content="B站Absdasbdsa"><meta name="copyright" content="Copyright (c) 2026 B站Absdasbdsa"><meta name="generator" content="DeepSeek Harness · 3D 桌宠控制台">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'">
+  <title>白子桌宠</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="simple-console.css"><link rel="stylesheet" href="conversation-history.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="identity"><span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 3c1.6 8.1 4.9 11.4 13 13-8.1 1.6-11.4 4.9-13 13C14.4 20.9 11.1 17.6 3 16 11.1 14.4 14.4 11.1 16 3Z"/><path d="m23 4 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" class="mark-spark"/></svg></span><div><div class="title-line"><h1>白子桌宠</h1><span id="versionLabel" class="version-label"></span></div></div></div>
+    <button id="chatHistory" class="history-entry" type="button">聊天记录</button><button id="assistantOpen" class="history-entry assistant-entry" type="button">智能助手</button>
+    <div class="theme-switch" role="group" aria-label="外观主题">
+      <span class="theme-label">主题</span>
+      <button type="button" data-theme-choice="system" aria-label="跟随系统" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3.5" width="16" height="11" rx="1.5"/><path d="M10 14.5v3m-3 0h6"/></svg></button>
+      <button type="button" data-theme-choice="light" aria-label="浅色" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.5"/><path d="M10 1v2m0 14v2M1 10h2m14 0h2M3.6 3.6 5 5m10 10 1.4 1.4M3.6 16.4 5 15M15 5l1.4-1.4"/></svg></button>
+      <button type="button" data-theme-choice="dark" aria-label="深色" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16.7 12.4A7.3 7.3 0 0 1 7.6 3.3a7.3 7.3 0 1 0 9.1 9.1Z"/></svg></button>
+    </div>
+    <div class="settings-wrapper"><button id="moreSettings" class="icon-button" title="更多设置" aria-label="更多设置" aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2h4l.6 3 2.5 1.5 2.9-1 2 3.5-2.3 2v2l2.3 2-2 3.5-2.9-1-2.5 1.5-.6 3h-4l-.6-3-2.5-1.5-2.9 1L2 15l2.3-2v-2L2 9l2-3.5 2.9 1L9.4 5Z"/><circle cx="12" cy="12" r="3.1"/></svg><span id="updateSettingsDot" class="update-indicator" aria-hidden="true" hidden></span></button></div>
+  </header>
+  <div class="contextbar"><div id="modeContext"><span class="dot"></span><span id="contextText">正在迎接你的学生…</span></div><label id="soloPicker" hidden>选择学生 <select id="soloRole" aria-label="选择学生"></select></label><button id="manageStudents" class="library-button" hidden>学生目录</button><button id="backToCards" hidden>← 返回学生卡片</button><button id="acknowledgeTask" class="library-button" hidden title="提前收起完成或失败提示">已查看</button><span id="workState" class="work-state" role="status">Harness · 等待任务状态</span><div class="volume-control" title="统一控制桌宠语音音量"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3Zm10-1.5a5 5 0 0 1 0 7m2-9.5a8.5 8.5 0 0 1 0 12"/></svg><label for="volumeRange">音量</label><input id="volumeRange" type="range" min="0" max="100" step="1" value="100" aria-label="统一语音音量"><output id="volumeValue" for="volumeRange">100%</output></div><span class="context-hint" id="contextHint">勾选学生，让桌面热闹一点</span></div>
+  <main id="multiContent">
+    <section class="intro-row"><div><p class="eyebrow">STUDENTS, BY YOUR SIDE</p><h2>选择今天的陪伴</h2><p>选择学生，再换上喜欢的服装。<span id="searchSummary" class="search-summary" role="status" aria-live="polite"></span></p></div><div class="selection-tools"><div class="search-field"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg><input id="roleSearch" type="search" placeholder="搜索名字或英文名" aria-label="搜索学生" maxlength="100" autocomplete="off" spellcheck="false"><button id="clearSearch" type="button" aria-label="清空搜索" title="清空搜索" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 6 8 8m0-8-8 8"/></svg></button></div><div class="bulk-actions"><button id="refreshCatalog" title="刷新本地学生列表">刷新目录</button></div></div></section>
+    <p id="catalogStatus" class="catalog-status" role="status" aria-live="polite" hidden></p>
+    <section id="cards" class="cards" aria-label="学生选择"></section>
+    <div id="searchEmptyState" class="search-empty" hidden><strong>没有找到匹配的学生</strong><p>试试中文名或英文名，或清空搜索查看全部。</p><button id="resetSearch" type="button">清空搜索</button></div>
+    <div id="emptyState" hidden><span class="empty-dot" aria-hidden="true"></span>桌面还很安静。点击学生卡片右上角的「显示」，让她来陪你。</div>
+    <footer class="usage"><span class="usage-icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="m6 3 9 8-5 1-2 5-2-14Z"/></svg></span><span><b>与学生互动</b><span class="usage-divider" aria-hidden="true"></span>点击闲聊 · 长按提起 · 拖动移动 · 右键按住旋转 · 滚轮缩放</span><span class="usage-more">右键学生，查看更多设置 <span aria-hidden="true">↗</span></span></footer>
+  </main>
+  <section id="singlePlaceholder" aria-labelledby="singleTitle" hidden>
+    <span class="single-empty-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="17" r="7"/><path d="M11 39v-3a13 13 0 0 1 26 0v3M38 7v8m-4-4h8"/></svg></span>
+    <h2 id="singleTitle">暂未选择学生</h2><p id="singleMessage" role="status">在上方选择一名学生，开始单人陪伴。</p>
+    <button id="browseStudents" type="button">打开学生目录</button><button id="retrySingle" hidden>重新载入</button>
+  </section>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="removeDialog" class="remove-dialog" aria-labelledby="removeTitle" aria-describedby="removeDescription">
+    <div class="remove-heading"><span class="remove-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5m4-5v5"/></svg></span><span class="eyebrow">STUDENT LIBRARY</span></div>
+    <h2 id="removeTitle">删除已下载的学生？</h2>
+    <p id="removeDescription">将从这台电脑移除学生的模型、动作与语音。</p>
+    <div class="remove-student-summary"><img id="removePortrait" alt="" hidden><div><strong id="removeName"></strong><span>下载的学生文件将被删除</span></div></div>
+    <p class="remove-note"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-8"/></svg><span>个人设置与截图会保留，重新下载后自动恢复。</span></p>
+    <p id="removeError" class="remove-error" role="alert" hidden></p>
+    <div class="remove-dialog-actions"><button id="cancelRemove" type="button" autofocus>取消</button><button id="confirmRemove" type="button"><span class="download-spinner" hidden aria-hidden="true"></span><span class="remove-label">删除学生</span></button></div>
+  </dialog>
+  <dialog id="historyDialog" class="history-dialog" aria-labelledby="historyHeading">
+    <header class="history-heading"><div><h2 id="historyHeading">聊天记录</h2><p>保存在这台电脑，选择一段对话继续聊。</p></div><button id="historyClose" type="button" aria-label="关闭聊天记录">关闭</button></header>
+    <p id="historyError" class="history-error" role="alert" hidden></p>
+    <div class="history-layout">
+      <aside class="history-sidebar" aria-label="会话列表"><div class="history-tools"><input id="historySearch" type="search" maxlength="100" placeholder="搜索标题或聊天内容" aria-label="搜索聊天记录"><button id="historyNew" type="button">新建对话</button></div><div id="historyList" class="history-list" role="list"></div><button id="historyMore" type="button" hidden>加载更多会话</button></aside>
+      <section class="history-detail" aria-label="对话内容"><div id="historyEmpty" class="history-empty">选择左侧对话，查看完整聊天记录。</div><div id="historySelected" class="history-selected" hidden>
+        <div class="history-titlebar"><div><h3 id="historyTitle"></h3><p id="historyIdentity"></p></div><button id="historyRename" type="button">重命名</button><button id="historyDelete" type="button">删除</button></div>
+        <form id="historyRenameForm" class="history-inline" hidden><input id="historyTitleInput" maxlength="80" aria-label="对话标题"><button type="submit">保存标题</button><button id="historyRenameCancel" type="button">取消</button></form>
+        <div id="historyDeleteConfirm" class="history-inline" hidden><span>删除后无法恢复这段对话，确定删除？</span><button id="historyDeleteYes" type="button">确认删除</button><button id="historyDeleteNo" type="button">取消</button></div>
+        <div id="historyTranscript" class="history-transcript" tabindex="0" aria-label="完整聊天内容"></div>
+        <footer class="history-footer"><span id="historyCount"></span><button id="historyResume" type="button">继续这段对话</button></footer>
+      </div></section>
+    </div>
+  </dialog>
+  <dialog id="assistantDialog" class="history-dialog assistant-dialog" aria-labelledby="assistantHeading">
+    <header class="history-heading"><div><h2 id="assistantHeading">智能助手</h2><p id="assistantClock"></p></div><button id="assistantClose" type="button">关闭</button></header>
+    <p id="assistantError" class="history-error" role="alert" hidden></p>
+    <nav class="assistant-tabs" aria-label="助手功能"><button type="button" data-assistant-tab="memory" aria-pressed="true">长期记忆</button><button type="button" data-assistant-tab="reminders" aria-pressed="false">提醒</button><button type="button" data-assistant-tab="tools" aria-pressed="false">工具</button><button type="button" data-assistant-tab="capabilities" aria-pressed="false">能力设置</button><button type="button" data-assistant-tab="companion" aria-pressed="false">陪伴设置</button></nav>
+    <div class="assistant-content">
+      <section id="assistant-memory"><p class="assistant-note">保存你希望她记住的信息，新对话也能使用。也可以聊天时说“记住：我喜欢骑车”。</p><form id="memoryForm" class="assistant-form"><label for="memoryText">记忆内容</label><textarea id="memoryText" maxlength="500" rows="2" required placeholder="例如：我喜欢骑车，周末通常上午有空"></textarea><div><button type="submit" id="memorySave">保存记忆</button><button type="button" id="memoryEditCancel" hidden>取消编辑</button></div></form><div id="memoryList" class="assistant-list"></div></section>
+      <section id="assistant-reminders" hidden><p class="assistant-note">保持软件运行才能提醒。关闭期间的单次提醒标为错过，重复提醒跳到下一次。可以延后十分钟或取消。</p><form id="reminderForm" class="assistant-form"><label for="reminderText">提醒事项</label><input id="reminderText" maxlength="300" required placeholder="例如：喝水"><label for="reminderWhen">第一次时间</label><input id="reminderWhen" maxlength="80" required placeholder="十分钟后 / 明天下午三点 / 今天15:30"><label for="reminderRepeat">重复</label><select id="reminderRepeat"><option value="">不重复</option><option value="daily">每天</option><option value="weekdays">工作日</option><option value="weekly">每周（同一星期）</option></select><button type="submit">添加提醒</button></form><div id="reminderList" class="assistant-list"></div></section>
+      <section id="assistant-tools" hidden><p class="assistant-note">普通聊天继续使用你的 DeepSeek 配置。联网、文件查询需要先在能力设置中开启；关闭的工具不会交给模型。</p><div id="assistantToolList" class="assistant-list"></div></section>
+      <section id="assistant-capabilities" hidden><p class="assistant-note">查询会将搜索词或城市发送给 Bing / Open-Meteo；读取的文件、记忆和历史片段可能发给你配置的聊天服务。</p><form id="capabilitiesForm" class="assistant-form"><label class="assistant-check"><input type="checkbox" id="assistantNetwork">开启联网搜索和天气</label><label for="assistantCity">默认天气城市</label><input id="assistantCity" maxlength="80" placeholder="城市中文名或拼音，例如 Beijing"><button type="submit">保存联网设置</button></form><h3>文件查找与文本读取</h3><p class="assistant-note">只查找授权目录，支持小于128KB的 UTF-8 文本。可随时撤销。</p><button type="button" id="assistantFolderAdd">选择文件夹</button><div id="assistantFolders" class="assistant-list"></div><h3>自动打开软件</h3><p class="assistant-note">直接说“打开微信”“打开QQ”或“打开记事本”。自动查找已安装软件；有多个匹配时，请按提示说完整名称。</p><form id="applicationsForm" class="assistant-form"><label class="assistant-check"><input type="checkbox" id="assistantAutoApplications">允许自动查找并打开已安装软件</label><button type="submit">保存软件设置</button></form><h3>允许打开的文件夹</h3><p class="assistant-note">聊天时说“打开”并提供下面完整的文件夹名称。</p><button type="button" id="assistantOpenFolderAdd">选择可打开文件夹</button><div id="assistantOpenFolders" class="assistant-list"></div><h3>文字总结</h3><p class="assistant-note">先选中文字并复制，再点击准备草稿。确认后发送才调用聊天接口。</p><button type="button" id="assistantClipboard">准备剪贴板总结草稿</button></section>
+      <section id="assistant-companion" hidden><p class="assistant-note">主动问候和休息提示仅在桌宠空闲时出现，不打断聊天。无需调用模型，也不持续监听麦克风。相同的静音起止小时表示全天可提示。</p><form id="companionForm" class="assistant-form"><label class="assistant-check"><input type="checkbox" id="assistantCompanionship">开启主动陪伴</label><label class="assistant-check"><input type="checkbox" id="assistantGreeting">启动后问候一次</label><label class="assistant-check"><input type="checkbox" id="assistantAmbientVoice">使用原音色播报主动提示</label><label for="assistantBreak">休息提示间隔（分钟）</label><input type="number" id="assistantBreak" min="15" max="240" required><label for="assistantQuietStart">免打扰开始（0–23点）</label><input type="number" id="assistantQuietStart" min="0" max="23" required><label for="assistantQuietEnd">免打扰结束（0–23点）</label><input type="number" id="assistantQuietEnd" min="0" max="23" required><button type="submit">保存陪伴设置</button></form><label class="assistant-check"><input type="checkbox" id="assistantStartup">开机启动桌宠</label><p class="assistant-note">麦克风按钮或 Alt+V 开始一次离线中文识别，看到“正在听”再说话；说完点“完成”识别，■ 可取消。文字填入输入框后可修改。首次加载本地模型可能需要十几秒；未安装本地模型时使用 Windows 中文语音组件。托盘右键可退出软件。</p></section>
+    </div>
+  </dialog>
+  <script type="module" src="renderer.js"></script>
+</body>
+</html>

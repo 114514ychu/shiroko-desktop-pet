@@ -1,0 +1,117 @@
+/* Copyright (c) 2026 B站Absdasbdsa. Mulan PSL v2. Managed full panels only. */
+:root {
+  color-scheme: light;
+  --panel-ink: #29434e; --panel-muted: #5f7580; --panel-line: #d3e0e4;
+  --panel-page: #f0f5f5; --panel-glow: #ffffff; --panel-surface: #fbfdfd;
+  --panel-field: #ffffff; --panel-tint: #edf3f5; --panel-accent: #356b78;
+}
+:root[data-theme=dark] {
+  color-scheme: dark;
+  --panel-ink: #e0edf1; --panel-muted: #abc1cb; --panel-line: #3b525e;
+  --panel-page: #15232b; --panel-glow: #2c424e; --panel-surface: #1e313b;
+  --panel-field: #263d49; --panel-tint: #273f4c; --panel-accent: #93cdd8;
+}
+body.studio {
+  font-family: "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+  font-size: 13px; line-height: 1.5; color: var(--panel-ink);
+  background: var(--panel-page); text-rendering: optimizeLegibility;
+  --blue: var(--panel-accent);
+}
+body.studio #app { grid-template-columns: minmax(300px,1fr) 342px; }
+body.studio #stage { background: radial-gradient(ellipse at 49% 46%,var(--panel-glow),var(--panel-page) 80%); }
+body.studio #panel { background: var(--panel-surface); border-color: var(--panel-line); padding: 26px 22px 18px; scrollbar-width: thin; scrollbar-color: var(--panel-line) transparent; }
+body.studio .brand { gap: 10px; }
+body.studio .crest { width: 40px; height: 40px; border-radius: 12px; }
+body.studio .crest svg { width: 29px; height: 29px; }
+body.studio h1 { font-size: 21px; line-height: 1.35; letter-spacing: 0; }
+body.studio .eyebrow { font-size: 9px; letter-spacing: 1.25px; color: var(--panel-muted); }
+body.studio .badge { font-size: 9px; padding: 4px 6px; letter-spacing: .5px; }
+body.studio .intro { font-size: 12px; line-height: 1.8; color: var(--panel-muted); margin: 14px 0 16px; }
+body.studio .status { background: var(--panel-tint); padding: 12px; margin-bottom: 16px; }
+body.studio .status strong { font-size: 13px; font-weight: 600; }
+body.studio .status small { font-size: 11px; line-height: 1.6; color: var(--panel-muted); margin-top: 3px; }
+body.studio .field { font-size: 12px; color: var(--panel-muted); gap: 7px; margin-bottom: 14px; }
+body.studio .field output { font-size: 11px; color: var(--panel-muted); font-variant-numeric: tabular-nums; }
+body.studio select { font-size: 12px; color: var(--panel-ink); background: var(--panel-field); border-color: var(--panel-line); }
+body.studio option { color: var(--panel-ink); background: var(--panel-field); }
+body.studio .buttons button { font-size: 12px; line-height: 1.45; background: var(--panel-field); border-color: var(--panel-line); color: var(--panel-ink); padding: 8px 4px; }
+body.studio .buttons button.primary { background: #356b78; color: #fff; border-color: #356b78; }
+body.studio .buttons button:hover { filter: none; background: var(--panel-tint); }
+body.studio .buttons button.primary:hover { background: #2d5e6a; }
+body.studio .auto-restore { font-size: 12px; background: var(--panel-field); color: var(--panel-ink); border-color: var(--panel-line); gap: 8px; padding: 10px; }
+body.studio .auto-restore small { font-size: 11px; color: var(--panel-muted); }
+body.studio .auto-restore:hover { background: var(--panel-tint); }
+body.studio .toggles { font-size: 12px; color: var(--panel-muted); line-height: 1.6; }
+body.studio .toggles input, body.studio input[type=range] { accent-color: var(--panel-accent); }
+body.studio .hint, body.studio .model-label { font-size: 12px; line-height: 1.7; color: var(--panel-muted); }
+body.studio .meta { font-size: 11px; color: var(--panel-muted); line-height: 1.7; overflow-wrap: anywhere; }
+body.studio .codex-button { font-size: 12px; background: var(--panel-tint); border-color: var(--panel-line); color: var(--panel-ink); }
+body.studio .footer { font-size: 10px; color: var(--panel-muted); line-height: 1.7; letter-spacing: 0; }
+body.studio .footer [data-attribution] { display: inline; }
+body.studio #loading { color: var(--panel-muted); }
+body.studio #bubble { background: var(--panel-field); color: var(--panel-ink); border-color: var(--panel-line); }
+/* Inserted sheets precede the role's linked sheet: explicitly outrank its studio rules. */
+html[data-theme] body.studio { background: var(--panel-page); }
+html[data-theme] body.studio #app { grid-template-columns: minmax(300px,1fr) 342px; }
+html[data-theme] body.studio #stage { background: radial-gradient(ellipse at 49% 46%,var(--panel-glow),var(--panel-page) 80%); }
+html[data-theme] body.studio #panel { background: var(--panel-surface); border-color: var(--panel-line); padding: 26px 22px 18px; }
+@media (max-width: 700px) {
+  body.studio #app { grid-template-columns: 1fr; }
+  body.studio #panel { padding: 17px 20px; }
+  html[data-theme] body.studio #app { grid-template-columns: 1fr; }
+  html[data-theme] body.studio #panel { padding: 17px 20px; }
+}
+
+/* Minimal companion panel, applied only to managed studios. */
+:root, :root[data-theme=light] {
+  --panel-ink:#243d59; --panel-muted:#7d8fa6; --panel-line:#dfebf4;
+  --panel-page:#f3f8fe; --panel-glow:#fff; --panel-surface:#fff;
+  --panel-field:#f7faff; --panel-tint:#edf7ff; --panel-accent:#1689cf;
+}
+:root[data-theme=dark] {
+  --panel-ink:#e3edff; --panel-muted:#9aadc8; --panel-line:#2d3e58;
+  --panel-page:#131f33; --panel-glow:#253e61; --panel-surface:#1b2b43;
+  --panel-field:#20334e; --panel-tint:#253f5a; --panel-accent:#71c7ff;
+}
+html[data-theme] body.studio #app {
+  box-sizing:border-box; padding:0; gap:0;
+  grid-template-columns:minmax(0,1fr) 248px; grid-template-rows:minmax(0,1fr);
+}
+html[data-theme] body.studio #stage {
+  height:100%; border:0; border-radius:0; background:var(--panel-page);
+}
+html[data-theme] body.studio #panel {
+  padding:24px 18px 16px; border:0; border-left:1px solid var(--panel-line); border-radius:0;
+  gap:0; overflow-x:hidden; background:var(--panel-surface); box-shadow:none;
+}
+html[data-theme] body.studio .brand { margin:0 0 20px; gap:0; }
+html[data-theme] body.studio .brand > .crest,
+html[data-theme] body.studio .brand .eyebrow,
+html[data-theme] body.studio .brand .badge { display:none; }
+html[data-theme] body.studio .brand h1 { font-size:18px; font-weight:600; letter-spacing:0; }
+html[data-theme] body.studio .field { margin-bottom:14px; font-size:12px; flex-shrink:0; }
+html[data-theme] body.studio select { min-height:36px; padding:8px 10px; border:1px solid var(--panel-line); border-radius:6px; font-size:12px; }
+html[data-theme] body.studio .companion-actions { display:flex; gap:8px; margin:0 0 14px; flex:none; }
+html[data-theme] body.studio .companion-actions button {
+  flex:1; min-height:40px; border:1px solid var(--panel-line); border-radius:6px;
+  background:var(--panel-field); color:var(--panel-ink); font:inherit; font-size:12px; cursor:pointer;
+}
+html[data-theme] body.studio .companion-actions #companionChat { color:#fff; background:#159ee9; border-color:#159ee9; }
+html[data-theme] body.studio .companion-actions button:hover { filter:brightness(.96); }
+html[data-theme] body.studio .simple-details { border:0; border-top:1px solid var(--panel-line); padding:0; margin:0; flex:none; }
+html[data-theme] body.studio .simple-details > summary {
+  display:flex; align-items:center; justify-content:space-between; padding:12px 0;
+  font-size:12px; color:var(--panel-muted); cursor:pointer; list-style:none; user-select:none;
+}
+html[data-theme] body.studio .simple-details > summary::after { content:'+'; color:var(--panel-muted); font-size:15px; font-weight:400; }
+html[data-theme] body.studio .simple-details[open] > summary::after { content:'-'; }
+html[data-theme] body.studio .simple-details-body { padding:0 0 10px; }
+html[data-theme] body.studio .simple-details .state-actions { border-color:var(--panel-line); background:var(--panel-field); color:var(--panel-ink); }
+html[data-theme] body.studio .simple-details .state-actions summary { color:var(--panel-ink); }
+html[data-theme] body.studio .simple-details .state-actions button { color:var(--panel-ink); background:var(--panel-tint); border-color:var(--panel-line); }
+html[data-theme] body.studio .student-about > summary { color:var(--panel-muted); font-size:11px; }
+html[data-theme] body.studio button:focus-visible, html[data-theme] body.studio summary:focus-visible { outline:2px solid var(--panel-accent); outline-offset:3px; }
+@media(max-width:980px) {
+  html[data-theme] body.studio #app { padding:0; gap:0; grid-template-columns:minmax(0,1fr) 232px; }
+  html[data-theme] body.studio #panel { padding:20px 15px 14px; }
+}

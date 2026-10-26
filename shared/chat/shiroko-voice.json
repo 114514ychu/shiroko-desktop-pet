@@ -1,0 +1,9 @@
+{
+  "endpoint": "http://127.0.0.1:9880/tts",
+  "gpt_weights": "weights/shiroko68p2-e6.ckpt",
+  "sovits_weights": "weights/shiroko68p2e10_e10_s10.pth",
+  "ref_audio_path": "voice/Cafe_monolog_1.wav",
+  "prompt_text": "今日の平均速度は……うん、ちょっと速くなった感じ……。",
+  "text_lang": "ja",
+  "prompt_lang": "ja"
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>砂狼白子 · 3D</title>
+  <link rel="stylesheet" href="/src/style.css">
+  <script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <main id="app">
+    <section id="stage" aria-label="砂狼白子实时3D学生">
+      <canvas id="scene"></canvas>
+      <div id="loading"><span class="loader"></span><span id="loadingText">砂狼白子正在过来…</span></div>
+      <div id="bubble" aria-live="polite" hidden></div>
+    </section>
+    <div id="petFooter" aria-label="学生名牌与操作栏" inert>
+      <div id="petName">砂狼白子 <span id="petStateDot"></span></div>
+      <div id="petTools"><button id="petStudio" title="打开动作面板" aria-label="打开动作面板">◇</button><button id="petMenu" title="学生菜单" aria-label="学生菜单">⋯</button></div>
+    </div>
+    <aside id="panel">
+      <div class="brand">
+        <span class="crest" role="img" aria-label="砂狼白子 · 狼与光环徽记">
+          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="m8 14-3-9 9 5h4l9-5-3 9 1 7-9 8-9-8Z"/><path d="m7 16 6 2-1 4m13-6-6 2 1 4m-8 0 4 3 4-3m-4 3v4M12 4a10 3 0 0 1 15 2M5 6a10 3 0 0 1 3-2"/><path d="M11 17h2m6 0h2"/></svg>
+        </span>
+        <div><p class="eyebrow">SUNAOOKAMI SHIROKO</p><h1>砂狼白子</h1></div><span class="badge">LIVE 3D</span>
+      </div>
+      <p class="intro">阿拜多斯对策委员会的沉静学生，寡言却珍视校园，喜欢跑步与骑行。陪你保持节奏，专注完成每一项工作。</p>
+      <div class="status"><span id="statusDot"></span><div><strong id="stateText">待机</strong><small id="connectionText">独立 3D 桌面陪伴</small></div></div>
+      <label class="field">服装<select id="variant" aria-label="服装"></select></label>
+      <p class="model-label" id="variantInfo">原始完整模型</p>
+      <label class="field">原始动作<select id="animation" aria-label="原始动作"></select></label>
+      <div class="buttons"><button id="playPause" class="primary">暂停</button><button id="resetAnimation">从头播放</button></div>
+      <button id="autoMode" class="auto-restore"><span>恢复自动陪伴</span><small id="autoState">当前：待机</small></button>
+      <label class="field timeline"><span>动作进度 <output id="timeText">0.00 s</output></span><input id="timeline" type="range" min="0" max="1000" step="1" value="0" aria-label="动作进度"></label>
+      <label class="field"><span>播放速度 <output id="speedText">1.0×</output></span><input id="speed" type="range" min="0.25" max="2" step="0.05" value="1" aria-label="播放速度"></label>
+      <div class="toggles"><label><input id="gaze" type="checkbox" checked> 视线跟随鼠标</label><label><input id="follow" type="checkbox" checked> 跟随 DeepSeek Harness 工作状态</label></div>
+      <details class="state-actions" id="stateActions"><summary>Harness 状态动作</summary><p class="hint">为当前服装选择陪伴动作，自动保存。手动播放或暂停后，点击“恢复自动陪伴”继续联动。</p><div id="stateActionsFields"></div><button id="resetStateActions">恢复本套默认动作</button></details>
+      <div class="buttons secondary"><button id="pickupPreview">提起动作</button><button id="resetView">正面视角</button><button id="capture">保存高清截图</button></div>
+      <div id="sceneNavigation" hidden><p class="hint">当前动作的道具会远离学生。可按原学生大小移动观察，或查看完整场景。</p><div class="buttons"><button id="sceneOverview">完整场景</button><button id="sceneCharacter">学生视角</button></div><label class="field"><span>场景位置 <output id="scenePositionText">学生</output></span><input id="scenePosition" type="range" min="0" max="100" value="0" aria-label="场景位置"></label></div>
+      <p class="hint">左键长按提起 · 桌面模式可拖动<br>右键按住并拖动转视角 · 滚轮缩放</p>
+      <div class="meta"><span id="modelInfo">正在读取模型</span><span id="renderInfo"></span></div>
+      <button id="openCodex" class="codex-button">打开 DeepSeek Harness ↗</button>
+      <div class="footer">本地运行 · 原始素材保存在 assets 文件夹</div>
+    </aside>
+  </main>
+  <script type="module" src="/src/renderer.js"></script>
+</body>
+</html>

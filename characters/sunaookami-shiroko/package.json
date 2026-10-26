@@ -1,0 +1,23 @@
+{
+  "name": "sunaookami-shiroko-3d-desktop",
+  "version": "1.2.0",
+  "private": true,
+  "petConsole": {
+    "protocolVersion": 1
+  },
+  "description": "砂狼白子独立实时 3D 桌面宠物",
+  "main": "src/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "studio": "electron . --studio",
+    "preview": "node src/server.cjs",
+    "check": "node --check src/main.cjs && node --check src/preload.cjs && node --check src/codex-state.cjs && node --check src/codex-read-state.cjs && node --check src/server.cjs && node --check src/renderer.js && node --check src/preferences.cjs && node --check src/animation-policy.mjs && node --check tools/test_controls.cjs && node --check src/window-layout.cjs && node --check src/window-presence.cjs && node --check src/window-motion.cjs && node --check src/runtime.cjs && node --check tools/capture_preview.cjs && node --check tools/validate_assets.cjs && node --check src/source-compatibility.mjs && node --check src/source-outline.mjs && node --check src/render-surface.mjs && node --check src/state-actions.mjs && node --check src/dialogue.mjs",
+    "test": "node --test test/*.test.cjs"
+  },
+  "dependencies": {
+    "electron": "44.7.0",
+    "three": "0.186.1"
+  },
+  "author": "B站Absdasbdsa",
+  "copyright": "Copyright (c) 2026 B站Absdasbdsa"
+}

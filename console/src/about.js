@@ -1,0 +1,3 @@
+const api=window.petAbout,$=id=>document.getElementById(id);
+function render(state){if(!state)return;document.documentElement.dataset.theme=state.theme;document.documentElement.dataset.productVersion=state.version;document.documentElement.dataset.author=state.author;$('version').textContent='v'+state.version;$('author').textContent='作者：'+state.author;$('copyright').textContent=state.copyright;document.querySelector('meta[name="author"]').content=state.author;}
+$('closeAbout').addEventListener('click',()=>api.close());document.addEventListener('keydown',event=>{if(event.key==='Escape')api.close();});api.onState(render);api.initial().then(render);
