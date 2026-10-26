@@ -2,7 +2,8 @@ const fs=require('node:fs'),path=require('node:path');
 const ROOT=path.resolve(__dirname,'..');
 function metadata(root=ROOT){return JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));}
 function electronPath(root=ROOT){
-  const version=metadata(root).dependencies.electron;
+  const info=metadata(root);
+  const version=(info.runtime||info.dependencies).electron;
   const candidates=[path.join(root,'runtime','electron-'+version,'electron.exe'),path.join(root,'node_modules/electron/dist/electron.exe')];
   const found=candidates.find(file=>fs.existsSync(file));
   if(!found)throw Error('公共运行环境尚未准备，请双击启动桌宠控制台。');
