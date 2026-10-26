@@ -1,4 +1,4 @@
-"""Import character assets from your own existing portable copy; does not download."""
+"""Import character assets and reference audio from your own portable copy; does not download."""
 import argparse,json,struct
 from pathlib import Path
 parser=argparse.ArgumentParser(description=__doc__)
@@ -15,7 +15,9 @@ with (args.portable/'resources/app.asar').open('rb') as stream:
             rel=f'{prefix}/{name}' if prefix else name
             if 'files' in e:walk(e,rel);continue
             parts=Path(rel).parts
-            if len(parts)<3 or parts[0]!='characters' or parts[2]!='assets':continue
+            character_asset=len(parts)>=3 and parts[0]=='characters' and parts[2]=='assets'
+            reference_audio=rel.startswith('shared/chat/voice/')
+            if not (character_asset or reference_audio):continue
             dest=(repo/rel).resolve()
             if not dest.is_relative_to(repo):raise RuntimeError('Invalid archive path')
             if e.get('link') or e.get('unpacked'):raise RuntimeError('Unsupported entry')
@@ -23,4 +25,4 @@ with (args.portable/'resources/app.asar').open('rb') as stream:
             if len(content)!=e['size']:raise RuntimeError('Truncated archive')
             dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(content);count+=1
     walk(header)
-print(f'Imported {count} local character assets. These files remain ignored by Git.')
+print(f'Imported {count} local character assets and reference audio files. These files remain ignored by Git.')

@@ -28,3 +28,4 @@ voice-component/
 *.safetensors
 # Local imported game assets: upload only after confirming their distribution rights
 characters/*/assets/
+shared/chat/voice/
